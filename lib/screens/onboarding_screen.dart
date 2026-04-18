@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:intern01/screens/login_screen.dart';
 
-class onbData {
+class OnbData {
   final String image;
   final String title;
   final String desc;
   final String btitle;
   final Color bColor;
-  onbData({
+  final Color fColor;
+  OnbData({
     required this.image,
     required this.title,
     required this.desc,
     required this.btitle,
     required this.bColor,
+    this.fColor = Colors.white,
   });
 }
 
@@ -33,16 +35,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       );
     } else {
       _pageController.nextPage(
-        duration: Duration(milliseconds: 300),
-        curve: Curves.bounceIn,
-      );
-    }
-  }
-
-  void _goToNextPage() {
-    if (_currentIndex < pages.length - 1) {
-      _pageController.nextPage(
-        duration: Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 700),
         curve: Curves.easeInOut,
       );
     }
@@ -50,8 +43,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   int _currentIndex = 0;
 
-  final List<onbData> pages = [
-    onbData(
+  final List<OnbData> pages = [
+    OnbData(
       image: 'assets/images/sc2.png',
       title: 'Quality',
       desc:
@@ -59,7 +52,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       btitle: 'Join The Movement',
       bColor: Colors.green,
     ),
-    onbData(
+    OnbData(
       image: 'assets/images/sc3.png',
       title: 'Convenient',
       desc:
@@ -67,13 +60,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       btitle: 'Join The Movement',
       bColor: Colors.redAccent,
     ),
-    onbData(
+    OnbData(
       image: 'assets/images/sc4.png',
       title: 'Local',
       bColor: Colors.yellowAccent,
       desc:
           'We love the earth and know you do too! Join us in reducing our local carbon footprint one order at a time. ',
       btitle: 'Join The Movement',
+      fColor: Colors.black,
     ),
   ];
 
@@ -133,6 +127,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       height: 1.5,
                     ),
                   ),
+                  SizedBox(height: 20),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
@@ -150,12 +146,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 20),
+
                   SizedBox(
                     height: 50,
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: pages[_currentIndex].bColor,
+                        foregroundColor: pages[_currentIndex].fColor,
                       ),
                       onPressed: buttonClick,
                       child: Text(pages[_currentIndex].btitle),

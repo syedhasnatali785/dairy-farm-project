@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intern01/screens/all_set.dart';
 import 'package:intern01/screens/onboarding_screen.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: OnBoardingScreen(),
+      home: AllSet(),
     );
   }
 }
