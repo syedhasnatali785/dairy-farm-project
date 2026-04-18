@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern01/screens/login_screen.dart';
+import 'package:intern01/screens/auth_screens/login_screen.dart';
 
 class OnbData {
   final String image;

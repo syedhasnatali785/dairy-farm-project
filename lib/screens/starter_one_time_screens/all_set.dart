@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern01/screens/home_screen.dart';
+import 'package:intern01/screens/dashboard_screens/home_screen.dart';
 import 'package:intern01/widgets/cbuttons.dart';
 
 class AllSet extends StatelessWidget {

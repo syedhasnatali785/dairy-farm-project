@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intern01/screens/forgotpassword_screen.dart';
-import 'package:intern01/screens/home_screen.dart';
-import 'package:intern01/screens/signup_screen.dart';
+import 'package:intern01/screens/auth_screens/forgotpassword_screen.dart';
+import 'package:intern01/screens/dashboard_screens/home_screen.dart';
+import 'package:intern01/screens/auth_screens/signup_screen.dart';
 import 'package:intern01/widgets/cbuttons.dart';
 import 'package:intern01/widgets/ctextfields.dart';
 import 'package:intern01/widgets/socialmediaicons.dart';
