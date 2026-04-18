@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intern01/screens/auth_screens/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -133,6 +134,33 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  InkWell(
+                    hoverColor: Colors.green,
+                    borderRadius: BorderRadius.circular(15),
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
+                    },
+                    child: Container(
+                      height: 30,
+                      width: 90,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.lightGreenAccent,
+                            offset: Offset(1, 2),
+                            blurRadius: 5,
+                          ),
+                        ],
+                      ),
+                      child: Center(child: Text('Logout')),
                     ),
                   ),
                 ],
