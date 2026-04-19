@@ -1,22 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intern01/screens/auth_screens/login_screen.dart';
-
-class OnbData {
-  final String image;
-  final String title;
-  final String desc;
-  final String btitle;
-  final Color bColor;
-  final Color fColor;
-  OnbData({
-    required this.image,
-    required this.title,
-    required this.desc,
-    required this.btitle,
-    required this.bColor,
-    this.fColor = Colors.white,
-  });
-}
+import 'package:intern01/widgets/cbuttons.dart';
+import 'package:intern01/widgets/obs_pv_sections.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -26,145 +10,93 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  final PageController _pageController = PageController();
-  void buttonClick() {
-    if (_currentIndex == pages.length - 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
-      );
-    } else {
-      _pageController.nextPage(
-        duration: Duration(milliseconds: 700),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
-
+  final PageController _controller = PageController();
   int _currentIndex = 0;
-
-  final List<OnbData> pages = [
-    OnbData(
-      image: 'assets/images/sc2.png',
-      title: 'Quality',
-      desc:
-          'Sell your farm fresh products directly to consumers, cutting out the middleman and reducing emissions of the global supply chain. ',
-      btitle: 'Join The Movement',
-      bColor: Colors.green,
-    ),
-    OnbData(
-      image: 'assets/images/sc3.png',
-      title: 'Convenient',
-      desc:
-          'Our team of delivery drivers will make sure your orders are picked up on time and promptly delivered to your customers.',
-      btitle: 'Join The Movement',
-      bColor: Colors.redAccent,
-    ),
-    OnbData(
-      image: 'assets/images/sc4.png',
-      title: 'Local',
-      bColor: Colors.yellowAccent,
-      desc:
-          'We love the earth and know you do too! Join us in reducing our local carbon footprint one order at a time. ',
-      btitle: 'Join The Movement',
-      fColor: Colors.black,
-    ),
-  ];
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          PageView.builder(
-            controller: _pageController,
-            onPageChanged: (value) {
-              setState(() {
-                _currentIndex = value;
-              });
-            },
-            itemCount: pages.length,
-            itemBuilder: (context, index) {
-              return Image.asset(
-                pages[index].image,
-                fit: BoxFit.cover,
-                alignment: Alignment.topCenter,
-              );
-            },
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
-                ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 40),
+        child: Column(
+          spacing: 10,
+          children: [
+            Text(
+              'Welcome To Dairy Farm Management System!',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "Let's streamline your farm operations and boost productivity.",
+              style: TextStyle(fontSize: 25),
+            ),
+            SizedBox(height: 10),
+            Expanded(
+              child: PageView(
+                onPageChanged: (value) {
+                  setState(() {
+                    _currentIndex = value;
+                  });
+                },
                 children: [
-                  Text(
-                    pages[_currentIndex].title,
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
+                  ObsPvSections(
+                    h1: '1. CATTLE MANAGEMENT',
+                    d1: 'Keep detailed, up-to-date records of your herd. Track health history, breeding cycles, and individual animal statistics.',
+                    img1: 'assets/images/onboarding_icons/1.png',
+                    h2: '2. MILK PRODUCTION',
+                    d2: 'Monitor your daily yields closely. Analyze production trends over time to optimize feeding and milking schedules.',
+                    img2: 'assets/images/onboarding_icons/obs2.png',
+                    h3: '3. FEED & FINANCES',
+                    d3: 'Maintain perfect oversight of your feed inventory and track your financial records to ensure farm profitability.',
+                    img3: 'assets/images/onboarding_icons/2.png',
                   ),
-                  const SizedBox(height: 16),
-                  Text(
-                    pages[_currentIndex].desc,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.black54,
-                      height: 1.5,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      pages.length,
-                      (index) => Container(
-                        margin: EdgeInsets.symmetric(horizontal: 4),
-                        height: 8,
-                        width: _currentIndex == index ? 24 : 8,
-                        decoration: BoxDecoration(
-                          color: _currentIndex == index
-                              ? Colors.black87
-                              : Colors.black26,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-
-                  SizedBox(
-                    height: 50,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: pages[_currentIndex].bColor,
-                        foregroundColor: pages[_currentIndex].fColor,
-                      ),
-                      onPressed: buttonClick,
-                      child: Text(pages[_currentIndex].btitle),
-                    ),
+                  ObsPvSections(
+                    h1: '4. STAFF & LABOR',
+                    d1: 'Easily manage your farmhands. Assign daily milking shifts, track employee hours, and streamline your payroll process.',
+                    img1: 'assets/images/onboarding_icons/obs1.png',
+                    h2: '5. INSIGHTFUL REPORTS',
+                    d2: 'Generate automated reports for milk quality, herd health, and financial compliance. Export data instantly for your vet or accountant.',
+                    img2: 'assets/images/onboarding_icons/obs2.png',
+                    h3: '6. SMART ALERTS',
+                    d3: 'Never miss a vaccination or a low-feed warning. Get a bird\'s-eye view of daily tasks and urgent alerts right on your home dashboard.',
+                    img3: 'assets/images/onboarding_icons/obs3.png',
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(2, (index) {
+                bool isActive = _currentIndex == index;
+                return AnimatedContainer(
+                  margin: const EdgeInsets.symmetric(horizontal: 5),
+                  duration: Duration(milliseconds: 300),
+                  height: 12,
+                  width: isActive ? 40 : 12,
+                  decoration: BoxDecoration(
+                    color: isActive ? Colors.white : Colors.green,
+                    border: Border.all(
+                      color: isActive ? Colors.green : Colors.transparent,
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                );
+              }),
+            ),
+            SizedBox(height: 10),
+            SizedBox(
+              height: 50,
+              width: 400,
+              child: Cbuttons(btitle: 'FINISH & LAUNCH DFMS', ontap: () {}),
+            ),
+          ],
+        ),
       ),
     );
   }
